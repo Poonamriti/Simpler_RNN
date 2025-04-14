@@ -1,4 +1,5 @@
 # Step 1: Import Libraries and Load the Model
+import streamlit as st
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.datasets import imdb
@@ -10,7 +11,10 @@ word_index = imdb.get_word_index()
 reverse_word_index = {value: key for key, value in word_index.items()}
 
 # Load the pre-trained model with ReLU activation
-model = load_model('simple_rnn_imdb.h5')
+try:
+    model = load_model('simple_rnn_imdb.h5')
+except Exception as e:
+    st.error(f"Model failed to load: {e}")
 
 # Step 2: Helper Functions
 # Function to decode reviews
@@ -25,7 +29,7 @@ def preprocess_text(text):
     return padded_review
 
 
-import streamlit as st
+
 ## streamlit app
 # Streamlit app
 st.title('IMDB Movie Review Sentiment Analysis')
@@ -48,3 +52,7 @@ if st.button('Classify'):
 else:
     st.write('Please enter a movie review.')
 
+
+
+
+ 
