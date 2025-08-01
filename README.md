@@ -1,1 +1,2 @@
 # Simpler_RNN
+RNN PROJECT
